@@ -1,27 +1,28 @@
 import base44 from "@base44/vite-plugin"
 import react from "@vitejs/plugin-react"
-import { defineConfig, loadEnv } from "vite"
+import { defineConfig } from "vite"
 
-export default defineConfig(({ mode }) => {
-  // Load .env, .env.[mode], etc into an object
-  const env = loadEnv(mode, process.cwd(), "")
+export default defineConfig({
+  base: "./",   // REQUIRED for Capacitor (file:// support)
+  logLevel: "error",
 
-  return {
-    base: "./",              // REQUIRED for Capacitor
-    logLevel: "error",
-    plugins: [
-      base44({
-        // Use env loaded by Vite (works for .env.production)
-        legacySDKImports: env.BASE44_LEGACY_SDK_IMPORTS === "true",
-        hmrNotifier: true,
-        navigationNotifier: true,
-        analyticsTracker: true,
-        visualEditAgent: true,
-      }),
-      react(),
-    ],
-    build: {
-      sourcemap: true,
-    },
-  }
+  define: {
+    "import.meta.env.VITE_BASE44_APP_BASE_URL":
+      JSON.stringify("https://sociable-trip-crew-go.base44.app"),
+  },
+
+  plugins: [
+    base44({
+      legacySDKImports: false,
+      hmrNotifier: true,
+      navigationNotifier: true,
+      analyticsTracker: true,
+      visualEditAgent: true,
+    }),
+    react(),
+  ],
+
+  build: {
+    sourcemap: true,
+  },
 })
