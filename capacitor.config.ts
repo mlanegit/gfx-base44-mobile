@@ -8,6 +8,14 @@ const config: CapacitorConfig = {
     url: 'https://sociable-trip-crew-go.base44.app',
     androidScheme: 'https',
   },
+
+    plugins: {
+    SplashScreen: {
+      launchShowDuration: 3000,  // 3 seconds so you can clearly see it
+      showSpinner: false,
+      backgroundColor: "#000000"
+    }
+  }
 };
 
 export default config;
