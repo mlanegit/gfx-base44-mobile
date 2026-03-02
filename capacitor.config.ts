@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'gfX_whatsGood',
   webDir: 'dist',
   server: {
-    url: 'https://sociable-trip-crew-go.base44.app',
+    url: 'https://sociable-trip-crew-go.base44.app/?v=2',
     androidScheme: 'https',
   },
 
